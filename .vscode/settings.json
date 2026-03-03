@@ -1,0 +1,9 @@
+{
+    // Teach VS Code about Tailwind v4 at-rules (@theme, @utility, etc.)
+    "css.customData": [
+        ".vscode/tailwind-css-data.json"
+    ],
+    // Silence the remaining unknown at-rule warnings in CSS/SCSS files
+    "css.lint.unknownAtRules": "ignore",
+    "scss.lint.unknownAtRules": "ignore"
+}

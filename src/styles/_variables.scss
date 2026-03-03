@@ -1,0 +1,21 @@
+// ============================================================
+//  Airtwo Store — Brand Color Palette
+// ============================================================
+
+// Primary blue
+$color-primary:   #2FA3E2;   // R47  G163 B226
+$color-secondary: #0F5A8E;   // R15  G90  B142
+
+// Neutrals
+$color-light:     #D9E1E7;   // R217 G225 B231
+$color-dark:      #000000;   // R0   G0   B0
+$color-white:     #FFFFFF;   // R255 G255 B255
+
+// Convenience map for use with @each loops if needed
+$palette: (
+  "primary":   $color-primary,
+  "secondary": $color-secondary,
+  "light":     $color-light,
+  "dark":      $color-dark,
+  "white":     $color-white,
+);

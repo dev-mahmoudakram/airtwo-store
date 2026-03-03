@@ -1,0 +1,71 @@
+// ============================================================
+//  Airtwo Store — SCSS Mixins
+// ============================================================
+@use "variables" as *;
+
+// Responsive breakpoints (mobile-first)
+@mixin sm {
+    @media (min-width: 640px) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media (min-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin xl {
+    @media (min-width: 1280px) {
+        @content;
+    }
+}
+
+@mixin xxl {
+    @media (min-width: 1536px) {
+        @content;
+    }
+}
+
+// Flex helpers
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+// Button base
+@mixin btn-base($bg, $color: $color-white) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    background-color: $bg;
+    color: $color;
+    border: none;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+
+    &:hover {
+        filter: brightness(1.1);
+    }
+
+    &:active {
+        filter: brightness(0.9);
+    }
+}

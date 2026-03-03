@@ -1,0 +1,50 @@
+// ============================================================
+//  Airtwo Store — Global Styles (SCSS)
+//  Brand tokens + base resets
+// ============================================================
+
+// 1. SCSS partials — @use MUST come first
+@use "../styles/variables" as vars;
+@use "../styles/mixins" as mix;
+
+// ============================================================
+//  2. CSS custom properties — expose SCSS palette as CSS vars
+//     Use #{} interpolation to write resolved hex values
+// ============================================================
+:root {
+    --color-primary: #{vars.$color-primary};
+    --color-secondary: #{vars.$color-secondary};
+    --color-light: #{vars.$color-light};
+    --color-dark: #{vars.$color-dark};
+    --color-white: #{vars.$color-white};
+
+    --background: #{vars.$color-white};
+    --foreground: #{vars.$color-dark};
+}
+
+// ============================================================
+//  3. Base / reset
+// ============================================================
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--foreground);
+    background: var(--background);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}

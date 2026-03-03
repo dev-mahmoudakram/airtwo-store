@@ -1,0 +1,45 @@
+{
+    "version": 1.1,
+    "atDirectives": [
+        {
+            "name": "@theme",
+            "description": "Tailwind CSS v4 — Define design tokens that map to utility classes (e.g. bg-*, text-*, border-*).",
+            "references": [
+                {
+                    "name": "Tailwind CSS v4 Docs",
+                    "url": "https://tailwindcss.com/docs/theme"
+                }
+            ]
+        },
+        {
+            "name": "@source",
+            "description": "Tailwind CSS v4 — Explicitly specify source files for content scanning.",
+            "references": [
+                {
+                    "name": "Tailwind CSS v4 Docs",
+                    "url": "https://tailwindcss.com/docs/detecting-classes-in-source-files"
+                }
+            ]
+        },
+        {
+            "name": "@utility",
+            "description": "Tailwind CSS v4 — Register a custom utility class.",
+            "references": [
+                {
+                    "name": "Tailwind CSS v4 Docs",
+                    "url": "https://tailwindcss.com/docs/adding-custom-styles"
+                }
+            ]
+        },
+        {
+            "name": "@variant",
+            "description": "Tailwind CSS v4 — Register a custom variant.",
+            "references": [
+                {
+                    "name": "Tailwind CSS v4 Docs",
+                    "url": "https://tailwindcss.com/docs/adding-custom-styles"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+/* ============================================================
+   Airtwo Store — CSS Entry Point
+   Tailwind v4 is loaded here (CSS layer), then the SCSS styles
+   are forwarded via a compiled SCSS partial
+   ============================================================ */
+
+/* 1. Tailwind v4 */
+@import "tailwindcss";
+
+/* 2. Tailwind v4 @theme — custom palette as Tailwind utilities
+      bg-primary, text-secondary, border-light, etc.          */
+@theme {
+    --color-primary: #2FA3E2;
+    --color-secondary: #0F5A8E;
+    --color-light: #D9E1E7;
+    --color-dark: #000000;
+    --color-white: #FFFFFF;
+}
