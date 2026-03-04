@@ -7,12 +7,19 @@
 /* 1. Tailwind v4 */
 @import "tailwindcss";
 
-/* 2. Tailwind v4 @theme — custom palette as Tailwind utilities
-      bg-primary, text-secondary, border-light, etc.          */
+/* 2. Tailwind v4 @theme —
+      Colors  → bg-primary, text-secondary, border-light …
+      Fonts   → font-cairo, font-montserrat, font-outfit   */
 @theme {
+    /* Brand colors */
     --color-primary: #2FA3E2;
     --color-secondary: #0F5A8E;
     --color-light: #D9E1E7;
     --color-dark: #000000;
     --color-white: #FFFFFF;
+
+    /* Typography — mirrors next/font CSS vars on <html> */
+    --font-family-cairo: var(--font-cairo), sans-serif;
+    --font-family-montserrat: var(--font-montserrat), sans-serif;
+    --font-family-outfit: var(--font-outfit), sans-serif;
 }

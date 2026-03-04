@@ -1,21 +1,31 @@
 // ============================================================
+//  Airtwo Store — Typography
+// ============================================================
+
+// next/font injects these CSS vars on <html>; we mirror them
+// as SCSS vars for use in component stylesheets.
+$font-cairo: var(--font-cairo), sans-serif; // Arabic + Latin body
+$font-montserrat: var(--font-montserrat), sans-serif; // Display / headings
+$font-outfit: var(--font-outfit), sans-serif; // UI labels / numbers
+
+// ============================================================
 //  Airtwo Store — Brand Color Palette
 // ============================================================
 
 // Primary blue
-$color-primary:   #2FA3E2;   // R47  G163 B226
-$color-secondary: #0F5A8E;   // R15  G90  B142
+$color-primary: #2FA3E2; // R47  G163 B226
+$color-secondary: #0F5A8E; // R15  G90  B142
 
 // Neutrals
-$color-light:     #D9E1E7;   // R217 G225 B231
-$color-dark:      #000000;   // R0   G0   B0
-$color-white:     #FFFFFF;   // R255 G255 B255
+$color-light: #D9E1E7; // R217 G225 B231
+$color-dark: #000000; // R0   G0   B0
+$color-white: #FFFFFF; // R255 G255 B255
 
 // Convenience map for use with @each loops if needed
 $palette: (
-  "primary":   $color-primary,
+  "primary": $color-primary,
   "secondary": $color-secondary,
-  "light":     $color-light,
-  "dark":      $color-dark,
-  "white":     $color-white,
+  "light": $color-light,
+  "dark": $color-dark,
+  "white": $color-white,
 );
