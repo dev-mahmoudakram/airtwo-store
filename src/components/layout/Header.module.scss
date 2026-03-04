@@ -1,0 +1,172 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mix;
+
+$transition: 0.25s ease;
+
+// ── Wrapper ──────────────────────────────────────────────────
+.header {
+    position: fixed;
+    top: 0;
+    inset-inline: 0; // left:0 + right:0 in one RTL-safe line
+    z-index: 100;
+    background: transparent;
+    box-shadow: none;
+    transition: background 0.35s ease, box-shadow 0.35s ease;
+
+    // Nav links are white on the dark hero bg
+    .navLink {
+        color: rgba(255, 255, 255, 0.9);
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+        }
+    }
+
+    .bar {
+        background: #fff;
+    }
+}
+
+// When scrolled → white header with shadow
+.scrolled {
+    background: #fff;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+
+    .navLink {
+        color: vars.$color-dark;
+
+        &:hover {
+            background: rgba(vars.$color-primary, 0.08);
+            color: vars.$color-primary;
+        }
+    }
+
+    .bar {
+        background: vars.$color-dark;
+    }
+}
+
+// ── Main row: logo + nav side by side ────────────────────────
+.mainHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    direction: rtl;
+
+    @include mix.md {
+        padding-inline: 3rem;
+    }
+}
+
+// ── Logo ─────────────────────────────────────────────────────
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.logoImg {
+    width: 150px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    mix-blend-mode: multiply;
+}
+
+// ── Desktop Nav ──────────────────────────────────────────────
+.nav {
+    display: none;
+
+    @include mix.md {
+        display: block;
+    }
+}
+
+.navList {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 0.25rem;
+}
+
+.navLink {
+    display: block;
+    padding: 0.55rem 1rem;
+    font-family: vars.$font-cairo;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: vars.$color-dark;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background $transition, color $transition;
+
+    &:hover {
+        background: rgba(vars.$color-primary, 0.08);
+        color: vars.$color-primary;
+    }
+}
+
+// ── Hamburger (mobile only) ───────────────────────────────────
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    transition: background $transition;
+
+    &:hover {
+        background: rgba(vars.$color-primary, 0.08);
+    }
+
+    @include mix.md {
+        display: none;
+    }
+}
+
+.bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: vars.$color-dark;
+    border-radius: 2px;
+    transition: transform $transition, opacity $transition;
+
+    &.barOpen {
+        &:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        &:nth-child(2) {
+            opacity: 0;
+        }
+
+        &:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+    }
+}
+
+// ── Mobile Nav dropdown ───────────────────────────────────────
+.mobileNav {
+    border-top: 1px solid vars.$color-light;
+    direction: rtl;
+
+    @include mix.md {
+        display: none;
+    }
+}
+
+.mobileNavList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1.5rem 1rem;
+    gap: 0.25rem;
+}
