@@ -1,7 +1,7 @@
 // ============================================================
 //  Airtwo Store — SCSS Mixins
 // ============================================================
-@use "variables" as *;
+@use "./variables" as *;
 
 // Responsive breakpoints (mobile-first)
 @mixin sm {
