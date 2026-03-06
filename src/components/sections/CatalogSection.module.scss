@@ -1,0 +1,392 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mix;
+@use "sass:color";
+
+$card-radius: 20px;
+$transition: 0.22s ease;
+
+// ── Section ───────────────────────────────────────────────────
+.section {
+    background: #f5f7fa;
+    padding: 5rem 1.25rem;
+    direction: rtl;
+
+    @include mix.md {
+        padding: 6rem 3rem;
+    }
+
+    @include mix.lg {
+        padding: 7rem 5rem;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+// ── Header ────────────────────────────────────────────────────
+.header {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-family: vars.$font-cairo;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    color: vars.$color-primary;
+    background: rgba(vars.$color-primary, 0.08);
+    padding: 0.28rem 0.85rem;
+    border-radius: 999px;
+    width: fit-content;
+}
+
+.title {
+    font-family: vars.$font-cairo;
+    font-size: clamp(1.65rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: vars.$color-dark;
+    line-height: 1.3;
+}
+
+.lead {
+    font-family: vars.$font-cairo;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    color: #607d8b;
+    line-height: 1.9;
+    max-width: 640px;
+}
+
+// ── Filters ───────────────────────────────────────────────────
+.filters {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: vars.$color-white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+}
+
+.filterGroup {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+}
+
+.filterLabel {
+    font-family: vars.$font-cairo;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: vars.$color-dark;
+    padding-top: 0.35rem;
+    white-space: nowrap;
+    min-width: 52px;
+}
+
+.pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.pill {
+    font-family: vars.$font-cairo;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    border: 1.5px solid #cfd8dc;
+    background: transparent;
+    color: #607d8b;
+    cursor: pointer;
+    transition: all $transition;
+
+    &:hover {
+        border-color: vars.$color-primary;
+        color: vars.$color-primary;
+        background: rgba(vars.$color-primary, 0.05);
+    }
+}
+
+.pillActive {
+    background: vars.$color-primary;
+    border-color: vars.$color-primary;
+    color: #fff !important;
+
+    &:hover {
+        background: color.adjust(#1a6fa0, $lightness: -6%);
+    }
+}
+
+.bestSellerPill {
+    border-color: #ffc107;
+    color: #ffc107;
+
+    &:hover {
+        background: rgba(255, 193, 7, 0.08);
+        border-color: #ffb300;
+        color: #ffb300;
+    }
+
+    &.pillActive {
+        background: #ffc107;
+        border-color: #ffc107;
+        color: #fff !important;
+
+        &:hover {
+            background: #ffb300;
+        }
+    }
+}
+
+.resetBtn {
+    align-self: flex-start;
+    font-family: vars.$font-cairo;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #e53935;
+    background: rgba(229, 57, 53, 0.06);
+    border: 1.5px solid rgba(229, 57, 53, 0.2);
+    border-radius: 999px;
+    padding: 0.32rem 0.9rem;
+    cursor: pointer;
+    transition: all $transition;
+
+    &:hover {
+        background: rgba(229, 57, 53, 0.12);
+    }
+}
+
+// ── Result count ──────────────────────────────────────────────
+.resultCount {
+    font-family: vars.$font-cairo;
+    font-size: 0.88rem;
+    color: #90a4ae;
+    text-align: right;
+}
+
+// ── Product grid ──────────────────────────────────────────────
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+
+    @include mix.sm {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mix.lg {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+// ── Product card ──────────────────────────────────────────────
+.card {
+    position: relative;
+    background: vars.$color-white;
+    border-radius: $card-radius;
+    overflow: hidden;
+    border: 1.5px solid #eceff1;
+    display: flex;
+    flex-direction: column;
+    transition: transform $transition, box-shadow $transition, border-color $transition;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+        border-color: vars.$color-primary;
+    }
+}
+
+.cardFeatured {
+    border-color: vars.$color-primary;
+    box-shadow: 0 4px 24px rgba(vars.$color-primary, 0.12);
+}
+
+.badge {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
+    z-index: 2;
+    font-family: vars.$font-cairo;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: vars.$color-primary;
+    color: #fff;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+}
+
+// Card image area
+.cardImg {
+    position: relative;
+    background: #f0f4f8 url("/assets/hero-bg.png") center / cover no-repeat;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 1rem;
+}
+
+.imgPlaceholder {
+    color: #b0bec5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Card body
+.cardBody {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.cardMeta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cardBrand {
+    font-family: vars.$font-cairo;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: vars.$color-primary;
+}
+
+.cardType {
+    font-family: vars.$font-cairo;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: rgba(vars.$color-primary, 0.08);
+    color: vars.$color-primary;
+    padding: 0.18rem 0.6rem;
+    border-radius: 999px;
+}
+
+.cardModel {
+    font-family: vars.$font-cairo;
+    font-size: 1rem;
+    font-weight: 700;
+    color: vars.$color-dark;
+    line-height: 1.4;
+}
+
+// Specs list
+.specs {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem 0.75rem;
+    margin: 0;
+    padding: 0;
+}
+
+.specs li {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: vars.$font-cairo;
+    font-size: 0.82rem;
+    color: #546e7a;
+}
+
+.specIcon {
+    font-size: 0.95rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+
+// WhatsApp button
+.waBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.65rem 1rem;
+    background: #25d366;
+    color: #fff;
+    font-family: vars.$font-cairo;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: background $transition, transform $transition;
+
+    &:hover {
+        background: color.adjust(#25d366, $lightness: -8%);
+        transform: translateY(-1px);
+    }
+}
+
+// ── Empty state ───────────────────────────────────────────────
+.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 4rem 2rem;
+    text-align: center;
+    color: #90a4ae;
+
+    span {
+        font-size: 2.5rem;
+    }
+
+    p {
+        font-family: vars.$font-cairo;
+        font-size: 1rem;
+    }
+}
+
+// ── View All button (home page preview) ───────────────────────
+.viewAllWrap {
+    display: flex;
+    justify-content: center;
+    padding-top: 0.5rem;
+}
+
+.viewAllBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 2.5rem;
+    background: vars.$color-primary;
+    color: #fff;
+    font-family: vars.$font-cairo;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+    box-shadow: 0 4px 20px rgba(vars.$color-primary, 0.3);
+
+    &:hover {
+        background: color.adjust(#1a6fa0, $lightness: -8%);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(vars.$color-primary, 0.4);
+    }
+}
