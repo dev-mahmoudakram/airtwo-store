@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import Image from "next/image";
 import styles from "./BrandsSection.module.scss";
 
 export default async function BrandsSection() {
@@ -33,8 +34,14 @@ export default async function BrandsSection() {
                     {[...strip1, ...strip1].map((b, i) => (
                         <div key={`r1-${i}`} className={styles.item}>
                             {b.logo ? (
-                                // eslint-disable-next-line @next/next/no-img-element
-                                <img src={b.logo} alt={b.name} className={styles.logo} />
+                                <Image
+                                    src={b.logo}
+                                    alt={b.name}
+                                    width={160}
+                                    height={60}
+                                    className={styles.logo}
+                                    style={{ objectFit: 'contain' }}
+                                />
                             ) : (
                                 <span className={styles.fallback}>{b.name}</span>
                             )}
@@ -49,8 +56,14 @@ export default async function BrandsSection() {
                     {[...strip2, ...strip2].map((b, i) => (
                         <div key={`r2-${i}`} className={styles.item}>
                             {b.logo ? (
-                                // eslint-disable-next-line @next/next/no-img-element
-                                <img src={b.logo} alt={b.name} className={styles.logo} />
+                                <Image
+                                    src={b.logo}
+                                    alt={b.name}
+                                    width={160}
+                                    height={60}
+                                    className={styles.logo}
+                                    style={{ objectFit: 'contain' }}
+                                />
                             ) : (
                                 <span className={styles.fallback}>{b.name}</span>
                             )}

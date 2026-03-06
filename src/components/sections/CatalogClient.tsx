@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Image from "next/image";
 import styles from "./CatalogSection.module.scss";
 
 const WHATSAPP_NUMBER = "201001803657";
@@ -110,8 +111,14 @@ export default function CatalogClient({ products, brands, hpOptions, viewAllHref
 
                                 <div className={styles.cardImg}>
                                     {product.image && (
-                                        // eslint-disable-next-line @next/next/no-img-element
-                                        <img src={product.image} alt={`${product.brand} ${product.model}`} className={styles.img} onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+                                        <Image
+                                            src={product.image}
+                                            alt={`${product.brand} ${product.model}`}
+                                            width={400}
+                                            height={300}
+                                            className={styles.img}
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        />
                                     )}
                                 </div>
 
