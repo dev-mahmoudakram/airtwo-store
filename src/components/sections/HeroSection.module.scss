@@ -1,5 +1,6 @@
 @use "../../styles/variables" as vars;
 @use "../../styles/mixins" as mix;
+@use "sass:color";
 
 // ── Hero wrapper ─────────────────────────────────────────────
 .hero {
@@ -111,7 +112,7 @@
     box-shadow: 0 4px 18px rgba(vars.$color-primary, 0.45);
 
     &:hover {
-        background: darken(#1a6fa0, 8%);
+        background: color.adjust(#1a6fa0, $lightness: -8%);
         transform: translateY(-2px);
         box-shadow: 0 8px 24px rgba(vars.$color-primary, 0.5);
     }

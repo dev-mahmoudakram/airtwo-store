@@ -1,10 +1,10 @@
 import styles from "./AboutSection.module.scss";
 
 const stats = [
-    { value: "١٠+", label: "سنوات خبرة" },
-    { value: "٥٠٠٠+", label: "عميل راضٍ" },
-    { value: "٢٠٠+", label: "منتج متاح" },
-    { value: "٢٤/٧", label: "دعم فني" },
+    { value: "25+", label: "سنوات خبرة" },
+    { value: "5000+", label: "عميل راضٍ" },
+    { value: "150+", label: "منتج متاح" },
+    { value: "24/7", label: "دعم فني" },
 ];
 
 const features = [
@@ -40,7 +40,7 @@ const features = [
 
 export default function AboutSection() {
     return (
-        <section className={styles.section}>
+        <section className={styles.section} id="about">
             <div className={styles.container}>
 
                 {/* ── Section header ── */}
