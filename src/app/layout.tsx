@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import { Cairo, Montserrat, Outfit } from "next/font/google";
 import "./tailwind.css";
 import "./globals.scss";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import SiteLayout from "@/components/layout/SiteLayout";
 
 // Primary font — Arabic + Latin (RTL site)
 const cairo = Cairo({
@@ -58,10 +56,7 @@ export default function RootLayout({
       className={`${cairo.variable} ${montserrat.variable} ${outfit.variable}`}
     >
       <body>
-        <Header />
-        <main style={{ paddingTop: 0, marginTop: 0 }}>{children}</main>
-        <Footer />
-        <WhatsAppButton />
+        <SiteLayout>{children}</SiteLayout>
       </body>
     </html>
   );

@@ -47,15 +47,35 @@ $transition: 0.25s ease;
     }
 }
 
+// Fixed white header for specific pages (e.g. products)
+.staticHeader {
+    background: #fff !important;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+
+    .navLink {
+        color: vars.$color-dark !important;
+
+        &:hover {
+            color: vars.$color-primary !important;
+        }
+    }
+
+    .bar {
+        background: vars.$color-dark !important;
+    }
+}
+
 // ── Main row: logo + nav side by side ────────────────────────
 .mainHeader {
     display: flex;
+    flex-direction: row-reverse; // Logo on the left for mobile
     align-items: center;
     justify-content: space-between;
     padding: 0.75rem 1.5rem;
     direction: rtl;
 
     @include mix.md {
+        flex-direction: row; // Logo on the right for desktop (RTL standard)
         padding-inline: 3rem;
     }
 }
@@ -73,7 +93,23 @@ $transition: 0.25s ease;
     height: auto;
     object-fit: contain;
     display: block;
-    mix-blend-mode: multiply;
+}
+
+.desktopLogo {
+    display: none;
+
+    @include mix.md {
+        display: block;
+    }
+}
+
+.mobileLogo {
+    display: block;
+    width: 200px;
+
+    @include mix.md {
+        display: none;
+    }
 }
 
 // ── Desktop Nav ──────────────────────────────────────────────
