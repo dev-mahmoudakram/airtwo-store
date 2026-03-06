@@ -1,0 +1,168 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mix;
+@use "sass:color";
+
+// ── Section ───────────────────────────────────────────────────
+.section {
+    padding: 6rem 0;
+    background: #fdfdfe;
+    overflow: hidden;
+    scroll-margin-top: 80px;
+
+    @include mix.md {
+        scroll-margin-top: 100px;
+    }
+
+    direction: ltr; // keep scroll direction neutral
+}
+
+// ── Header ────────────────────────────────────────────────────
+.header {
+    direction: rtl;
+    text-align: center;
+    padding: 0 1.25rem;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.eyebrow {
+    font-family: vars.$font-cairo;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: vars.$color-primary;
+    background: rgba(vars.$color-primary, 0.08);
+    padding: 0.28rem 0.9rem;
+    border-radius: 999px;
+    display: inline-block;
+}
+
+.title {
+    font-family: vars.$font-cairo;
+    font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+    font-weight: 800;
+    color: vars.$color-dark;
+    margin: 0;
+}
+
+.sub {
+    font-family: vars.$font-cairo;
+    font-size: 0.95rem;
+    color: #78909c;
+    margin: 0;
+}
+
+// ── Fade wrapper (clips + adds gradient edges) ────────────────
+.fadeWrap {
+    overflow: hidden;
+    margin-bottom: 1rem;
+    margin-inline: auto;
+    padding: 0.4rem 0;
+    max-width: 1200px;
+
+    // Soft fade on left & right edges
+    -webkit-mask-image: linear-gradient(to right,
+            transparent 0%,
+            #000 12%,
+            #000 88%,
+            transparent 100%);
+    mask-image: linear-gradient(to right,
+            transparent 0%,
+            #000 12%,
+            #000 88%,
+            transparent 100%);
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+// ── Marquee row ───────────────────────────────────────────────
+.row {
+    display: flex;
+    gap: 1.25rem;
+    width: max-content;
+}
+
+@keyframes toRight {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes toLeft {
+    from {
+        transform: translateX(-50%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.rowRight {
+    animation: toRight 30s linear infinite;
+
+    &:hover {
+        animation-play-state: paused;
+    }
+}
+
+.rowLeft {
+    animation: toLeft 36s linear infinite;
+
+    &:hover {
+        animation-play-state: paused;
+    }
+}
+
+// ── Individual brand item ─────────────────────────────────────
+.item {
+    flex-shrink: 0;
+    width: 200px;
+    height: 80px;
+    background: #fff;
+    border: 1.5px solid #e8eef3;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+    transition: border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+    cursor: default;
+
+    &:hover {
+        border-color: vars.$color-primary;
+        box-shadow: 0 6px 24px rgba(vars.$color-primary, 0.14);
+        transform: translateY(-4px) scale(1.03);
+    }
+}
+
+.logo {
+    max-width: 100%;
+    max-height: 48px;
+    width: auto;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    transition: opacity 0.22s;
+    opacity: 0.85;
+
+    .item:hover & {
+        opacity: 1;
+    }
+}
+
+.fallback {
+    font-family: vars.$font-cairo;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: vars.$color-dark;
+    white-space: nowrap;
+}
