@@ -86,7 +86,7 @@ export default function ContactSection() {
                                 <FontAwesomeIcon icon={faPhone} />
                             </div>
                             <div className={styles.itemDetail}>
-                                <h4>رقم الهاتف</h4>
+                                <h3>رقم الهاتف</h3>
                                 <div className={styles.phoneGroup}>
                                     <a href="tel:+201001803657" dir="ltr">01001803657</a>
                                     <span className={styles.divider}>•</span>
@@ -100,7 +100,7 @@ export default function ContactSection() {
                                 <FontAwesomeIcon icon={faEnvelope} />
                             </div>
                             <div className={styles.itemDetail}>
-                                <h4>البريد الإلكتروني</h4>
+                                <h3>البريد الإلكتروني</h3>
                                 <p>airtwo.info@gmail.com</p>
                             </div>
                         </div>
@@ -110,7 +110,7 @@ export default function ContactSection() {
                                 <FontAwesomeIcon icon={faClock} />
                             </div>
                             <div className={styles.itemDetail}>
-                                <h4>مواعيد العمل</h4>
+                                <h3>مواعيد العمل</h3>
                                 <p>يومياً: 10:00 صباحاً - 10:00 مساءً</p>
                                 <p>الجمعة: 2:00 مساءً - 10:00 مساءً</p>
                             </div>
