@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faPhone,
@@ -8,39 +8,65 @@ import {
     faEnvelope
 } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 import styles from "./ContactSection.module.scss";
 
 export default function ContactSection() {
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const [phoneValue, setPhoneValue] = useState<string | undefined>();
+
+    useEffect(() => {
+        if (status === "success") {
+            const timer = setTimeout(() => {
+                setStatus("idle");
+            }, 5000);
+            return () => clearTimeout(timer);
+        }
+    }, [status]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setStatus("loading");
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setStatus("success");
+        const target = e.target as typeof e.target & {
+            name: { value: string };
+            email: { value: string };
+            message: { value: string };
+        };
+
+        if (!phoneValue) {
+            alert("يرجى إدخال رقم الهاتف");
+            setStatus("idle");
+            return;
+        }
+
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: target.name.value,
+                    email: target.email.value,
+                    phone: phoneValue,
+                    message: target.message.value,
+                }),
+            });
+
+            if (!res.ok) throw new Error("Failed to submit");
+            setStatus("success");
+
+            // Clear form
+            (e.target as HTMLFormElement).reset();
+            setPhoneValue(undefined);
+        } catch (error) {
+            console.error(error);
+            setStatus("error");
+            alert("حدث خطأ أثناء إرسال الرسالة، يرجى المحاولة مرة أخرى.");
+        }
     };
 
-    if (status === "success") {
-        return (
-            <section className={styles.section} id="contact">
-                <div className={styles.container}>
-                    <div className={styles.successMsg}>
-                        <h3>شكراً لتواصلك معنا!</h3>
-                        <p>سنقوم بالرد عليك في أقرب وقت ممكن.</p>
-                        <button
-                            onClick={() => setStatus("idle")}
-                            className={styles.submitBtn}
-                            style={{ marginTop: "1rem", width: "auto", paddingInline: "2rem" }}
-                        >
-                            إرسال رسالة أخرى
-                        </button>
-                    </div>
-                </div>
-            </section>
-        );
-    }
+
 
     return (
         <section className={styles.section} id="contact">
@@ -61,7 +87,7 @@ export default function ContactSection() {
                             </div>
                             <div className={styles.itemDetail}>
                                 <h4>رقم الهاتف</h4>
-                                <a href="tel:+201000000000">0100 000 0000</a>
+                                <a href="tel:+201000000000" dir="ltr" style={{ display: "inline-block" }}>+20 100 000 0000</a>
                             </div>
                         </div>
 
@@ -99,27 +125,52 @@ export default function ContactSection() {
                 </div>
 
                 <div className={styles.formSide}>
-                    <form className={styles.form} onSubmit={handleSubmit}>
-                        <div className={styles.field}>
-                            <label htmlFor="name">الأسم بالكامل</label>
-                            <input type="text" id="name" required placeholder="مثال: محمود أكرم" />
+                    {status === "success" ? (
+                        <div className={styles.successMsg}>
+                            <h3>شكراً لتواصلك معنا!</h3>
+                            <p>سنقوم بالرد عليك في أقرب وقت ممكن.</p>
+                            <button
+                                onClick={() => setStatus("idle")}
+                                className={styles.submitBtn}
+                                style={{ marginTop: "1rem", width: "auto", paddingInline: "2rem" }}
+                            >
+                                إرسال رسالة أخرى
+                            </button>
                         </div>
-                        <div className={styles.field}>
-                            <label htmlFor="contact_info">رقم الهاتف أو البريد الإلكتروني</label>
-                            <input type="text" id="contact_info" required placeholder="للتواصل معك" />
-                        </div>
-                        <div className={styles.field}>
-                            <label htmlFor="message">رسالتك</label>
-                            <textarea id="message" rows={5} required placeholder="كيف يمكننا مساعدتك؟"></textarea>
-                        </div>
-                        <button
-                            type="submit"
-                            className={styles.submitBtn}
-                            disabled={status === "loading"}
-                        >
-                            {status === "loading" ? "جاري الإرسال..." : "إرسال الرسالة"}
-                        </button>
-                    </form>
+                    ) : (
+                        <form className={styles.form} onSubmit={handleSubmit}>
+                            <div className={styles.field}>
+                                <label htmlFor="name">الأسم بالكامل</label>
+                                <input type="text" id="name" required placeholder="مثال: محمود أكرم" />
+                            </div>
+                            <div className={styles.field}>
+                                <label htmlFor="email">البريد الإلكتروني</label>
+                                <input type="email" id="email" required placeholder="name@example.com" dir="ltr" />
+                            </div>
+                            <div className={styles.field}>
+                                <label htmlFor="phone">رقم الهاتف</label>
+                                <PhoneInput
+                                    id="phone"
+                                    placeholder="أدخل رقم الهاتف"
+                                    value={phoneValue}
+                                    onChange={setPhoneValue}
+                                    defaultCountry="EG"
+                                    className={styles.phoneInputContainer}
+                                />
+                            </div>
+                            <div className={styles.field}>
+                                <label htmlFor="message">رسالتك</label>
+                                <textarea id="message" rows={5} required placeholder="كيف يمكننا مساعدتك؟"></textarea>
+                            </div>
+                            <button
+                                type="submit"
+                                className={styles.submitBtn}
+                                disabled={status === "loading"}
+                            >
+                                {status === "loading" ? "جاري الإرسال..." : "إرسال الرسالة"}
+                            </button>
+                        </form>
+                    )}
                 </div>
             </div>
         </section>

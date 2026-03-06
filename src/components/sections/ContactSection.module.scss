@@ -208,3 +208,76 @@
     border-radius: 12px;
     font-weight: 700;
 }
+
+// Styling for react-phone-number-input
+.phoneInputContainer {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+
+    &:focus-within {
+        border-color: vars.$color-primary;
+        box-shadow: 0 0 0 3px rgba(vars.$color-primary, 0.1);
+    }
+
+    // Target the country select wrapper
+    :global(.PhoneInputCountry) {
+        padding: 0 1rem;
+        border-inline-end: 1px solid #e2e8f0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    // Fix the flag icon sizing
+    :global(.PhoneInputCountryIcon) {
+        width: 1.5rem;
+        height: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+        border-radius: 2px;
+        overflow: hidden;
+    }
+
+    :global(.PhoneInputCountryIconImg) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    // Target the dropdown arrow
+    :global(.PhoneInputCountrySelectArrow) {
+        width: 0.4rem;
+        height: 0.4rem;
+        border-right: 1.5px solid #a0aec0;
+        border-bottom: 1.5px solid #a0aec0;
+        transform: rotate(45deg);
+        margin-top: -0.2rem;
+    }
+
+    // Target the actual phone number input field
+    :global(.PhoneInputInput) {
+        flex: 1;
+        border: none !important;
+        outline: none !important;
+        padding: 0.85rem 1rem;
+        font-family: inherit;
+        font-size: 1rem;
+        background: transparent;
+        border-radius: 0;
+        min-width: 0;
+        direction: ltr; // Phone numbers should always be LTR
+        text-align: left;
+
+        &:focus {
+            box-shadow: none !important;
+        }
+    }
+}
