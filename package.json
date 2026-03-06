@@ -35,7 +35,9 @@
     "eslint-config-next": "16.1.6",
     "postcss": "^8.5.8",
     "sass": "^1.97.3",
-    "tailwindcss": "^4.2.1",
-    "typescript": "^5"
+    "tailwindcss": "^4.2.1"
+  },
+  "overrides": {
+    "nodemailer": "$nodemailer"
   }
 }
