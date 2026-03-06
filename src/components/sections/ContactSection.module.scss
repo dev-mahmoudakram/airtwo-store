@@ -1,0 +1,210 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mix;
+@use "sass:color";
+
+.section {
+    padding: 5rem 1.25rem;
+    background: #fff;
+    direction: rtl;
+
+    @include mix.md {
+        padding: 7rem 3rem;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+
+    @include mix.lg {
+        grid-template-columns: 1fr 1.2fr;
+        align-items: start;
+    }
+}
+
+.infoSide {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.eyebrow {
+    display: inline-block;
+    color: vars.$color-primary;
+    background: rgba(vars.$color-primary, 0.08);
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    width: max-content;
+}
+
+.title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    color: vars.$color-dark;
+}
+
+.desc {
+    font-size: 1.05rem;
+    color: #4a5568;
+    line-height: 1.6;
+}
+
+.contactList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contactItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+}
+
+.iconWrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(vars.$color-primary, 0.1);
+    color: vars.$color-primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.itemDetail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    h4 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 700;
+        color: vars.$color-dark;
+    }
+
+    p,
+    a {
+        margin: 0;
+        font-size: 1.05rem;
+        color: #4a5568;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    a:hover {
+        color: vars.$color-primary;
+    }
+}
+
+.whatsappBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: #25d366;
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+    width: fit-content;
+
+    &:hover {
+        background: color.adjust(#25d366, $lightness: -5%);
+        transform: translateY(-2px);
+    }
+}
+
+.formSide {
+    background: #f8fafc;
+    padding: 2.5rem;
+    border-radius: 24px;
+    border: 1px solid #edf2f7;
+
+    @include mix.md {
+        padding: 3.5rem;
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    label {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: vars.$color-dark;
+    }
+
+    input,
+    textarea {
+        padding: 0.85rem 1rem;
+        border-radius: 10px;
+        border: 1px solid #e2e8f0;
+        font-family: inherit;
+        font-size: 1rem;
+        transition: border-color 0.2s, box-shadow 0.2s;
+
+        &:focus {
+            outline: none;
+            border-color: vars.$color-primary;
+            box-shadow: 0 0 0 3px rgba(vars.$color-primary, 0.1);
+        }
+    }
+}
+
+.submitBtn {
+    background: vars.$color-primary;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+
+    &:hover {
+        background: color.adjust(vars.$color-primary, $lightness: -5%);
+        transform: translateY(-2px);
+    }
+
+    &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+    }
+}
+
+.successMsg {
+    text-align: center;
+    padding: 2rem;
+    color: #059669;
+    background: #ecfdf5;
+    border-radius: 12px;
+    font-weight: 700;
+}
