@@ -1,0 +1,235 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mix;
+@use "sass:color";
+
+.section {
+    padding: 6rem 0;
+    background: #0a0c10; // Dark background for glassmorphism pop
+    direction: ltr;
+    overflow: hidden;
+    position: relative;
+    scroll-margin-top: 80px;
+
+    @include mix.md {
+        scroll-margin-top: 100px;
+    }
+}
+
+.bgGlow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(vars.$color-primary, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 5rem;
+    padding: 0 1.25rem;
+    direction: rtl;
+    position: relative;
+    z-index: 2;
+}
+
+.eyebrow {
+    display: inline-block;
+    color: vars.$color-primary;
+    background: rgba(vars.$color-primary, 0.1);
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba(vars.$color-primary, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.02em;
+}
+
+.marqueeContainer {
+    position: relative;
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.fadeLeft,
+.fadeRight {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    z-index: 10;
+    pointer-events: none;
+
+    @include mix.sm {
+        width: 150px;
+    }
+}
+
+.fadeLeft {
+    left: 0;
+    background: linear-gradient(to right, #0a0c10 0%, transparent 100%);
+}
+
+.fadeRight {
+    right: 0;
+    background: linear-gradient(to left, #0a0c10 0%, transparent 100%);
+}
+
+.marqueeRow {
+    width: 100%;
+    overflow: hidden;
+}
+
+.row {
+    display: flex;
+    gap: 2rem;
+    width: max-content;
+    padding: 1rem 0;
+
+    &:hover {
+        animation-play-state: paused !important;
+    }
+}
+
+.rowLeft {
+    animation: scrollLeft 60s linear infinite;
+}
+
+.rowRight {
+    animation: scrollRight 66s linear infinite;
+}
+
+@keyframes scrollLeft {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scrollRight {
+    from {
+        transform: translateX(-50%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 1rem 1.25rem;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    width: 310px;
+    flex-shrink: 0;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    direction: rtl;
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 18px;
+        padding: 1px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%, rgba(255, 255, 255, 0.05) 100%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+    }
+
+    &:hover {
+        transform: translateY(-4px);
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(vars.$color-primary, 0.4);
+        box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.4);
+    }
+}
+
+.cardTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quoteIcon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(vars.$color-primary, 0.1);
+    color: vars.$color-primary;
+    border-radius: 8px;
+    font-size: 0.75rem;
+}
+
+.stars {
+    display: flex;
+    gap: 0.1rem;
+    color: #ffc107;
+    font-size: 0.7rem;
+}
+
+.content {
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    min-height: unset;
+    font-style: italic;
+}
+
+.footer {
+    margin-top: 0.15rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    background: vars.$color-primary;
+    color: #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.85rem;
+}
+
+.name {
+    font-weight: 800;
+    color: #fff;
+    font-size: 0.9rem;
+}
