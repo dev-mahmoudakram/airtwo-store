@@ -14,6 +14,7 @@ export default function AdminNav() {
 
     const links = [
         { href: "/admin", label: "📊 لوحة التحكم" },
+        { href: "/admin/messages", label: "📨 رسائل التواصل" },
         { href: "/admin/brands", label: "🏷️ الماركات" },
         { href: "/admin/products", label: "📦 المنتجات" },
         { href: "/admin/testimonials", label: "💬 آراء العملاء" },

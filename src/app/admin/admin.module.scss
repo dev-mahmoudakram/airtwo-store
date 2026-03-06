@@ -370,3 +370,296 @@
     background: rgba(229, 57, 53, 0.08);
     color: #e53935;
 }
+
+// ── Filter Group ──────────────────────────────────────────────
+.filterGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+}
+
+.filterBtn {
+    padding: 0.6rem 1.25rem;
+    background: transparent;
+    color: #64748b;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s;
+    position: relative;
+
+    &:hover {
+        background: #f1f5f9;
+        color: #334155;
+    }
+
+    &.activeFilter {
+        color: #1a6fa0;
+        background: rgba(26, 111, 160, 0.08);
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -0.65rem;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #1a6fa0;
+            border-radius: 3px 3px 0 0;
+        }
+    }
+}
+
+// ── Messages Grid & Improvements ──────────────────────────────────────────────
+.messagesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.messageCard {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+        border-color: rgba(26, 111, 160, 0.15);
+    }
+}
+
+.messageCardUnread {
+    background: #ffffff;
+    border-color: rgba(26, 111, 160, 0.2);
+    box-shadow: 0 4px 20px rgba(26, 111, 160, 0.06);
+
+    // Top colored border instead of full side border, feels lighter
+    border-top: 4px solid #1a6fa0;
+}
+
+.messageHeader {
+    padding: 1.5rem 1.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.senderInfo {
+    h3 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: #0f172a;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
+
+.unreadDot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #3b82f6;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+.messageDate {
+    font-size: 0.8rem;
+    color: #64748b;
+    white-space: nowrap;
+    background: #f8fafc;
+    padding: 0.4rem 0.75rem;
+    border-radius: 50px;
+    border: 1px solid #e2e8f0;
+    font-weight: 600;
+}
+
+.messageContact {
+    padding: 0 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    .contactRow {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.95rem;
+        color: #475569;
+
+        .contactIconWrap {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f5f9;
+            border-radius: 8px;
+            color: #1a6fa0;
+
+            svg {
+                width: 12px;
+                height: 12px;
+            }
+        }
+
+        a {
+            color: #334155;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+
+            &:hover {
+                color: #1a6fa0;
+            }
+        }
+    }
+}
+
+.messageBody {
+    padding: 1.5rem;
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    background: #f8fafc;
+    border-top: 1px dashed #e2e8f0;
+    border-bottom: 1px dashed #e2e8f0;
+    flex: 1;
+}
+
+.messageFooter {
+    padding: 1rem 1.5rem;
+    background: #ffffff;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+.btnMarkRead {
+    padding: 0.5rem 1.25rem;
+    background: #f0fdf4;
+    color: #16a34a;
+    border: 1px solid rgba(22, 163, 74, 0.2);
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover {
+        background: #16a34a;
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2);
+    }
+}
+
+.btnDelete {
+    padding: 0.5rem 1.25rem;
+    background: #fef2f2;
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover {
+        background: #ef4444;
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+    }
+}
+
+
+// ── Empty & Loading States ──────────────────────────────────────────────
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    background: #fff;
+    border-radius: 16px;
+    border: 1px dashed #cbd5e1;
+    text-align: center;
+    margin-top: 2rem;
+
+    .emptyStateIcon {
+        width: 80px;
+        height: 80px;
+        background: #f1f5f9;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: #94a3b8;
+        margin-bottom: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: #1e293b;
+        margin: 0 0 0.5rem 0;
+    }
+
+    p {
+        color: #64748b;
+        font-size: 0.95rem;
+        max-width: 400px;
+        margin: 0;
+    }
+}
+
+.loadingState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    gap: 1rem;
+    color: #64748b;
+    font-weight: 600;
+
+    .spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid #f1f5f9;
+        border-top-color: #1a6fa0;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
