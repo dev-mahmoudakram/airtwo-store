@@ -1,0 +1,160 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mix;
+@use "sass:color";
+
+// ── Section ───────────────────────────────────────────────────
+.section {
+    background: vars.$color-dark;
+    padding: 5.5rem 1.25rem;
+    direction: rtl;
+    position: relative;
+    overflow: hidden;
+
+    // Subtle radial glow
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(26, 111, 160, 0.18) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    @include mix.md {
+        padding: 6rem 3rem;
+    }
+
+    @include mix.lg {
+        padding: 7rem 5rem;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin-inline: auto;
+    position: relative;
+    z-index: 1;
+}
+
+// ── Header ────────────────────────────────────────────────────
+.header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.eyebrow {
+    font-family: vars.$font-cairo;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: vars.$color-primary;
+    background: rgba(vars.$color-primary, 0.12);
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(vars.$color-primary, 0.25);
+    display: inline-block;
+}
+
+.title {
+    font-family: vars.$font-cairo;
+    font-size: clamp(1.65rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+}
+
+.lead {
+    font-family: vars.$font-cairo;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0;
+}
+
+// ── Grid ──────────────────────────────────────────────────────
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+
+    @include mix.sm {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mix.lg {
+        // 5 cards: 3 on top, 2 centered on bottom
+        grid-template-columns: repeat(3, 1fr);
+
+        // last 2 cards span half width each, centered
+        .card:nth-child(4) {
+            grid-column: 1;
+        }
+
+        .card:nth-child(5) {
+            grid-column: 2;
+        }
+    }
+}
+
+// ── Card ──────────────────────────────────────────────────────
+.card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    backdrop-filter: blur(8px);
+
+    &:hover {
+        background: rgba(26, 111, 160, 0.12);
+        border-color: rgba(26, 111, 160, 0.35);
+        transform: translateY(-5px);
+    }
+}
+
+// ── Icon ──────────────────────────────────────────────────────
+.iconWrap {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    background: rgba(26, 111, 160, 0.15);
+    border: 1px solid rgba(26, 111, 160, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.25s, border-color 0.25s;
+
+    .card:hover & {
+        background: rgba(26, 111, 160, 0.28);
+        border-color: rgba(26, 111, 160, 0.55);
+    }
+}
+
+.icon {
+    width: 24px !important;
+    height: 24px !important;
+    color: vars.$color-primary;
+}
+
+// ── Text ──────────────────────────────────────────────────────
+.cardTitle {
+    font-family: vars.$font-cairo;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+}
+
+.cardDesc {
+    font-family: vars.$font-cairo;
+    font-size: 0.88rem;
+    line-height: 1.85;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0;
+}
