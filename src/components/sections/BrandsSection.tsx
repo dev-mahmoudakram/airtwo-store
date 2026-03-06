@@ -23,7 +23,7 @@ export default async function BrandsSection() {
         <section className={styles.section} id="brands" aria-label="الماركات">
             <div className={styles.header}>
                 <span className={styles.eyebrow}>شركاؤنا</span>
-                <h2 className={styles.title}>موزعون معتمدون لدي اير - تو</h2>
+                <h2 className={styles.title}>موزعون معتمدون لدي   </h2>
                 <p className={styles.sub}>نوفر أفضل الماركات العالمية بأسعار تنافسية</p>
             </div>
 
