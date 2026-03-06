@@ -1,7 +1,7 @@
 import styles from "./WhatsAppButton.module.scss";
 
 // Replace with your actual WhatsApp number (international format, no +)
-const WHATSAPP_NUMBER = "201000000000";
+const WHATSAPP_NUMBER = "201001803657";
 const WHATSAPP_MESSAGE = "مرحباً، أريد الاستفسار عن منتج";
 
 export default function WhatsAppButton() {

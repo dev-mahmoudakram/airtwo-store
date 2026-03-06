@@ -87,7 +87,11 @@ export default function ContactSection() {
                             </div>
                             <div className={styles.itemDetail}>
                                 <h4>رقم الهاتف</h4>
-                                <a href="tel:+201000000000" dir="ltr" style={{ display: "inline-block" }}>+20 100 000 0000</a>
+                                <div className={styles.phoneGroup}>
+                                    <a href="tel:+201001803657" dir="ltr">01001803657</a>
+                                    <span className={styles.divider}>•</span>
+                                    <a href="tel:+201110051500" dir="ltr">01110051500</a>
+                                </div>
                             </div>
                         </div>
 
@@ -97,7 +101,7 @@ export default function ContactSection() {
                             </div>
                             <div className={styles.itemDetail}>
                                 <h4>البريد الإلكتروني</h4>
-                                <p>info@airtwo.store</p>
+                                <p>airtwo.info@gmail.com</p>
                             </div>
                         </div>
 
@@ -114,7 +118,7 @@ export default function ContactSection() {
                     </div>
 
                     <a
-                        href="https://wa.me/201000000000"
+                        href="https://wa.me/201001803657"
                         target="_blank"
                         rel="noopener noreferrer"
                         className={styles.whatsappBtn}

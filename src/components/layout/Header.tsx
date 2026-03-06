@@ -28,6 +28,16 @@ export default function Header() {
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
+    // Clear hash from URL when landing on home page from another page (like /products)
+    useEffect(() => {
+        if (pathname === '/' && window.location.hash) {
+            // Wait slightly for Next.js to finish its native anchor scroll, then clear the hash
+            setTimeout(() => {
+                window.history.replaceState(null, '', window.location.pathname);
+            }, 100);
+        }
+    }, [pathname]);
+
     const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         // Only intercept if it's a hash link and we are on the home page
         if (href.startsWith("/#") && pathname === "/") {
@@ -42,7 +52,7 @@ export default function Header() {
     };
 
     return (
-        <header className={`${styles.header} ${scrolled || isProductsPage ? styles.scrolled : ""} ${isProductsPage ? styles.staticHeader : ""}`}>
+        <header className={`${styles.header} ${scrolled || isProductsPage || menuOpen ? styles.scrolled : ""} ${isProductsPage ? styles.staticHeader : ""}`}>
             <div className={styles.mainHeader}>
                 {/* Logo */}
                 <Link href="/" className={styles.logo}>

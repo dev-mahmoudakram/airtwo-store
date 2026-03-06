@@ -1,7 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import styles from "./HeroSection.module.scss";
 
 export default function HeroSection() {
+    const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        const element = document.getElementById("contact");
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <section className={styles.hero} id="home">
             <div className={styles.inner}>
@@ -16,7 +26,7 @@ export default function HeroSection() {
                     </p>
 
                     <div className={styles.actions}>
-                        <Link href="/contact" className={styles.btnPrimary}>
+                        <Link href="/#contact" onClick={handleContactClick} className={styles.btnPrimary}>
                             تواصل معنا
                         </Link>
                         <Link href="/products" className={styles.btnOutline}>
