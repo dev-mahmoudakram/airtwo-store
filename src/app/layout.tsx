@@ -30,7 +30,8 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: "Airtwo Store",
-  description: "متجر إيرتو - أفضل المنتجات بأسعار مميزة",
+  description: "متجر إيرتو - بيع وصيانة أجهزة التكييف. أفضل المنتجات بأسعار مميزة.",
+  keywords: ["تكييف", "صيانة تكييفات", "بيع تكييف", "متجر إيرتو", "Airtwo Store", "أجهزة تكييف", "تبريد وتكييف", "مصر"],
   icons: {
     icon: [
       { url: "/favicon/favicon.ico" },
@@ -40,6 +41,22 @@ export const metadata: Metadata = {
     apple: "/favicon/apple-touch-icon.png",
     other: [
       { rel: "manifest", url: "/favicon/site.webmanifest" },
+    ],
+  },
+  openGraph: {
+    title: "Airtwo Store | متجر إيرتو",
+    description: "متجر إيرتو لبيع وصيانة أجهزة التكييف. تسوق أفضل أجهزة التكييف بأسعار مميزة.",
+    url: "https://airtwo-store.vercel.app",
+    siteName: "Airtwo Store",
+    locale: "ar_EG",
+    type: "website",
+    images: [
+      {
+        url: "/assets/logo-1.png",
+        width: 1200,
+        height: 630,
+        alt: "Airtwo Store Logo",
+      },
     ],
   },
 };
