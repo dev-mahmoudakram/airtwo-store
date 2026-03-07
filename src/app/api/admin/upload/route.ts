@@ -33,40 +33,46 @@ async function removeWhiteBackground(input: Buffer): Promise<Buffer<ArrayBuffer>
 }
 
 export async function POST(req: NextRequest) {
-    const session = await auth();
-    if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    try {
+        const session = await auth();
+        if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    const removeBg = req.nextUrl.searchParams.get("removeBg") === "true";
+        const removeBg = req.nextUrl.searchParams.get("removeBg") === "true";
 
-    const formData = await req.formData();
-    const file = formData.get("file") as File | null;
+        const formData = await req.formData();
+        const file = formData.get("file") as File | null;
 
-    if (!file) return NextResponse.json({ error: "No file provided" }, { status: 400 });
+        if (!file) return NextResponse.json({ error: "No file provided" }, { status: 400 });
 
-    let arrayBuffer = await file.arrayBuffer();
-    let buffer = Buffer.from(arrayBuffer);
+        let arrayBuffer = await file.arrayBuffer();
+        let buffer = Buffer.from(arrayBuffer);
 
-    // Determine final extension/content-type
-    let contentType = file.type;
-    let ext = file.name.split(".").pop() ?? "jpg";
+        // Determine final extension/content-type
+        let contentType = file.type;
+        let ext = file.name.split(".").pop() ?? "jpg";
 
-    if (removeBg) {
-        buffer = await removeWhiteBackground(buffer);
-        contentType = "image/png";
-        ext = "png";
+        if (removeBg) {
+            buffer = await removeWhiteBackground(buffer);
+            contentType = "image/png";
+            ext = "png";
+        }
+
+        const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+
+        const supabase = createAdminClient();
+        const { error } = await supabase.storage
+            .from(BUCKET)
+            .upload(fileName, buffer, { contentType, upsert: false });
+
+        if (error) {
+            console.error("Supabase upload error:", error);
+            return NextResponse.json({ error: error.message }, { status: 500 });
+        }
+
+        const { data } = supabase.storage.from(BUCKET).getPublicUrl(fileName);
+        return NextResponse.json({ url: data.publicUrl });
+    } catch (err) {
+        console.error("Upload API Error:", err);
+        return NextResponse.json({ error: "Internal Server Error during upload" }, { status: 500 });
     }
-
-    const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-
-    const supabase = createAdminClient();
-    const { error } = await supabase.storage
-        .from(BUCKET)
-        .upload(fileName, buffer, { contentType, upsert: false });
-
-    if (error) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
-    }
-
-    const { data } = supabase.storage.from(BUCKET).getPublicUrl(fileName);
-    return NextResponse.json({ url: data.publicUrl });
 }

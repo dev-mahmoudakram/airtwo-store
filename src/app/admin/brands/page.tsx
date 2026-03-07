@@ -15,8 +15,13 @@ export default function BrandsPage() {
     const [saving, setSaving] = useState(false);
 
     async function fetchBrands() {
-        const res = await fetch("/api/admin/brands");
-        setBrands(await res.json());
+        try {
+            const res = await fetch("/api/admin/brands");
+            if (!res.ok) throw new Error("Failed to fetch brands");
+            setBrands(await res.json());
+        } catch (err) {
+            console.error("Fetch brands error:", err);
+        }
     }
 
     useEffect(() => { fetchBrands(); }, []);
@@ -26,14 +31,30 @@ export default function BrandsPage() {
 
     async function save() {
         setSaving(true);
-        if (editing) {
-            await fetch("/api/admin/brands", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: editing.id, name, logo }) });
-        } else {
-            await fetch("/api/admin/brands", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, logo }) });
+        try {
+            const endpoint = "/api/admin/brands";
+            const method = editing ? "PUT" : "POST";
+            const body = editing ? { id: editing.id, name, logo } : { name, logo };
+
+            const res = await fetch(endpoint, {
+                method,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body)
+            });
+
+            if (!res.ok) {
+                const data = await res.json().catch(() => ({}));
+                throw new Error(data.error ?? "Failed to save brand");
+            }
+
+            setModal(false);
+            fetchBrands();
+        } catch (err) {
+            console.error("Save brand error:", err);
+            alert((err as Error).message);
+        } finally {
+            setSaving(false);
         }
-        setSaving(false);
-        setModal(false);
-        fetchBrands();
     }
 
     async function deleteBrand(id: number) {

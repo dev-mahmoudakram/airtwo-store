@@ -19,6 +19,12 @@ export default function ImageUpload({ value, onChange, label = "الصورة", r
         const file = e.target.files?.[0];
         if (!file) return;
 
+        if (file.size > 4 * 1024 * 1024) {
+            setError("حجم الصورة كبير جداً (الأقصى 4 ميجابايت)");
+            setUploading(false);
+            return;
+        }
+
         setError("");
         setUploading(true);
 
@@ -28,11 +34,22 @@ export default function ImageUpload({ value, onChange, label = "الصورة", r
         try {
             const url = removeBg ? "/api/admin/upload?removeBg=true" : "/api/admin/upload";
             const res = await fetch(url, { method: "POST", body: fd });
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.error ?? "Upload failed");
+
+            let data;
+            const contentType = res.headers.get("content-type");
+            if (contentType && contentType.includes("application/json")) {
+                data = await res.json();
+            } else {
+                throw new Error(`خطأ في الخادم (${res.status})`);
+            }
+
+            if (!res.ok) throw new Error(data.error ?? "فشل الرفع");
             onChange(data.url);
         } catch (err) {
-            setError((err as Error).message);
+            console.error("Upload error:", err);
+            setError((err as Error).message === "Unexpected end of JSON input"
+                ? "خطأ في معالجة البيانات من الخادم"
+                : (err as Error).message);
         } finally {
             setUploading(false);
         }
