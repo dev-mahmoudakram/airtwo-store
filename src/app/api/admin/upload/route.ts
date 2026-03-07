@@ -73,6 +73,6 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ url: data.publicUrl });
     } catch (err) {
         console.error("Upload API Error:", err);
-        return NextResponse.json({ error: "Internal Server Error during upload" }, { status: 500 });
+        return NextResponse.json({ error: (err as Error).message || "Internal Server Error during upload" }, { status: 500 });
     }
 }
