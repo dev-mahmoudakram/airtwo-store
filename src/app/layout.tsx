@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Airtwo Store | متجر إيرتو",
     description: "متجر إيرتو لبيع وصيانة أجهزة التكييف. تسوق أفضل أجهزة التكييف بأسعار مميزة.",
-    url: "https://airtwo-store.vercel.app",
+    url: "https://airtwo-store.com",
     siteName: "Airtwo Store",
     locale: "ar_EG",
     type: "website",

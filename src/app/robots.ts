@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-    const baseUrl = 'https://airtwo-store.vercel.app'
+    const baseUrl = 'https://airtwo-store.com'
 
     return {
         rules: {
