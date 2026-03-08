@@ -39,7 +39,7 @@
     font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 0.08em;
-    color: vars.$color-primary;
+    color: vars.$color-primary-dark;
     text-transform: uppercase;
     background: rgba(vars.$color-primary, 0.08);
     padding: 0.3rem 0.9rem;
@@ -58,7 +58,7 @@
 .lead {
     font-family: vars.$font-cairo;
     font-size: clamp(0.95rem, 2vw, 1.05rem);
-    color: #546e7a;
+    color: vars.$color-text-secondary;
     line-height: 1.9;
 }
 
@@ -95,7 +95,7 @@
     font-family: vars.$font-cairo;
     font-size: clamp(1.75rem, 4vw, 2.5rem);
     font-weight: 800;
-    color: vars.$color-primary;
+    color: vars.$color-primary-dark;
     line-height: 1;
 }
 
@@ -103,7 +103,7 @@
     font-family: vars.$font-cairo;
     font-size: 0.88rem;
     font-weight: 600;
-    color: #546e7a;
+    color: vars.$color-text-secondary;
 }
 
 // ── Feature cards ─────────────────────────────────────────────
@@ -157,6 +157,6 @@
 .featureDesc {
     font-family: vars.$font-cairo;
     font-size: 0.9rem;
-    color: #546e7a;
+    color: vars.$color-text-secondary;
     line-height: 1.8;
 }

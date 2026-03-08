@@ -39,7 +39,7 @@
 
 .eyebrow {
     display: inline-block;
-    color: vars.$color-primary;
+    color: vars.$color-primary-dark;
     background: rgba(vars.$color-primary, 0.08);
     padding: 0.3rem 1rem;
     border-radius: 50px;
@@ -56,7 +56,7 @@
 
 .desc {
     font-size: 1.05rem;
-    color: #4a5568;
+    color: vars.$color-text-secondary;
     line-height: 1.6;
 }
 
@@ -101,7 +101,7 @@
     a {
         margin: 0;
         font-size: 1.05rem;
-        color: #4a5568;
+        color: vars.$color-text-secondary;
         text-decoration: none;
         transition: color 0.2s;
     }
@@ -130,7 +130,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
-    background: #25d366;
+    background: #075E54;
     color: #fff;
     padding: 1rem 2rem;
     border-radius: 12px;
@@ -141,7 +141,7 @@
     width: fit-content;
 
     &:hover {
-        background: color.adjust(#25d366, $lightness: -5%);
+        background: color.adjust(#075E54, $lightness: -5%);
         transform: translateY(-2px);
     }
 }
@@ -193,7 +193,7 @@
 }
 
 .submitBtn {
-    background: vars.$color-primary;
+    background: vars.$color-primary-dark;
     color: #fff;
     padding: 1rem;
     border-radius: 10px;
