@@ -29,6 +29,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://airtwo-store.com"),
   title: "Airtwo Store",
   description: "متجر إيرتو - بيع وصيانة أجهزة التكييف. أفضل المنتجات بأسعار مميزة.",
   keywords: ["تكييف", "صيانة تكييفات", "بيع تكييف", "متجر إيرتو", "Airtwo Store", "أجهزة تكييف", "تبريد وتكييف", "مصر"],
