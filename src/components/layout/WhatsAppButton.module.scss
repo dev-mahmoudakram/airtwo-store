@@ -11,10 +11,10 @@
     height: 56px;
     border-radius: 50%;
 
-    background: #25d366;
+    background: #075e54;
     color: #fff;
     text-decoration: none;
-    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+    box-shadow: 0 4px 20px rgba(7, 94, 84, 0.45);
 
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 
@@ -29,7 +29,7 @@
         position: absolute;
         inset: 0;
         border-radius: 50%;
-        border: 2px solid #25d366;
+        border: 2px solid #075e54;
         animation: pulse 2s ease-out infinite;
     }
 }
